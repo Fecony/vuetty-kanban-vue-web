@@ -1,29 +1,22 @@
-# vue-project
+# vuebit-vue-web Kanban App
 
 ## Project setup
+
 ```
 npm install
+create .env
 ```
 
+> `.env` file will be used to store Backend Server url, JWT secret etc
+
 ### Compiles and hot-reloads for development
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### If Tests will be used in future
 
-### Run your tests
 ```
 npm run test
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
