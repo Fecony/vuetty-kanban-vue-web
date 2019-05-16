@@ -1,10 +1,10 @@
-# vuebit-vue-web Kanban App
+# vuetty-kanban-vue-web Kanban App
 
 ## Project setup
 
 ```
 npm install
-create .env
+create .env file
 ```
 
 > `.env` file will be used to store Backend Server url, JWT secret etc
