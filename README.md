@@ -1,22 +1,64 @@
-# vuetty-kanban-vue-web Kanban App
+# Vuetty Kanban Vue Web
 
-## Project setup
+Kanban Application Project created with Vue.js ❤️
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Installing
+
+A step by step series of examples that tell you how to get a development env running
+
+Copy project to local machine
 
 ```
+git clone git@github.com:Fecony/vuetty-kanban-server.git
+```
+
+Move to project directory and Install dependencies
+
+```
+cd vuetty-vue-web
 npm install
-create .env file
 ```
 
-> `.env` file will be used to store Backend Server url, etc
-
-### Compiles and hot-reloads for development
+Compile and hot-reload for development
 
 ```
 npm run serve
 ```
 
-### If Tests will be used in future
+Create .env file and add all variables needed
 
 ```
-npm run test
+PORT = [PORT]
+SERVER_URL = [SERVER_URL]
 ```
+
+Start Application
+
+```
+npm run serve
+```
+
+## Running the tests
+
+> TODO
+
+## Deployment
+
+Application is deployed to Netlify
+Deploys from `master` are published automatically.
+
+## Built With
+
+- [Vue](https://vuejs.org/) - The web framework used
+
+## Authors
+
+> TODO
+
+## License
+
+> TODO
