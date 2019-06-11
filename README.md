@@ -7,7 +7,7 @@ npm install
 create .env file
 ```
 
-> `.env` file will be used to store Backend Server url, JWT secret etc
+> `.env` file will be used to store Backend Server url, etc
 
 ### Compiles and hot-reloads for development
 
