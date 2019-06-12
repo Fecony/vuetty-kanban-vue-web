@@ -13,13 +13,13 @@ A step by step series of examples that tell you how to get a development env run
 Copy project to local machine
 
 ```
-git clone git@github.com:Fecony/vuetty-kanban-server.git
+git clone git@github.com:Fecony/vuetty-kanban-vue-web.git
 ```
 
 Move to project directory and Install dependencies
 
 ```
-cd vuetty-vue-web
+cd vuetty-kanban-vue-web
 npm install
 ```
 
@@ -48,7 +48,7 @@ npm run serve
 
 ## Deployment
 
-Application is deployed to Netlify
+Application is deployed to Netlify. In Order to add/update environment variables go to Project dashboard.
 Deploys from `master` are published automatically.
 
 ## Built With
