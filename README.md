@@ -1,12 +1,16 @@
 # Vuetty Kanban Vue Web
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/62d41172-c196-4c68-873c-afc469701b6b/deploy-status)](https://app.netlify.com/sites/quirky-lumiere-7d10cf/deploys)
+
+## Description
+
 Kanban Application Project created with Vue.js ❤️
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Installing
+## Installing
 
 A step by step series of examples that tell you how to get a development env running
 
