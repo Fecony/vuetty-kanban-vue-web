@@ -1,6 +1,8 @@
 <template>
   <div id="app" class="layout-default is-fullheight">
-    <router-view/>
+     <transition name="fade" mode="out-in" appear>
+        <router-view/>
+     </transition>
   </div>
 </template>
 
@@ -12,14 +14,12 @@
   text-align: center;
   color: #2c3e50;
 }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0
 }
 </style>

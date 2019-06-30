@@ -1,92 +1,120 @@
 <template>
   <section class="hero is-fullheight">
-		<div class="hero-body">
-			<div class="container">
-				<div class="columns is-centered">
-					<div class="column is-5-tablet is-8-desktop is-5-widescreen">
-					<div id="login">
-						<div class="login-card">
-							<div class="card-title">
-								<h1>Please Register</h1>
-							</div>
-							<div class="content">
-								<form @submit="register">
-									<div class="field">
-                    <label class="label level-left" for="email">Email</label>
-										<div class="control">
-											<input class="input" v-model.lazy="email" v-validate="'email|required'" type="email" name="email" placeholder="Email">
-											<span class="icon is-small is-left">
-												<i class="fa fa-envelope"></i>
-											</span>
-											<span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
+  	<div class="hero-body">
+  		<div class="container">
+  			<div class="columns is-centered">
+  				<div class="column is-5-tablet is-8-desktop is-5-widescreen">
+  					<div id="login">
+  						<div class="login-card">
+  							<div class="card-title">
+  								<h1>Please Sign In</h1>
+  							</div>
+  							<div class="content">
+  								<transition name="fade">
+  									<div class="notification is-success"
+  										v-if="response && closeNotification || respError && closeNotification"
+  										v-bind:class="{ 'is-danger': hasError }">
+  										<button class="delete" @click="close()"></button>
+  										<p>
+  											{{ response }}
+  											{{ respError }}
+  										</p>
+  									</div>
+  								</transition>
+  								<form @submit.prevent="register()">
+  									<div class="control">
+  										<div class="field">
+  											<label class="label" for="email">Email</label>
+  											<input class="input" id="email" type="email" v-model="user.email"
+  												v-validate="'required|email'" name="email" placeholder="Email" />
+  											<span v-show="errors.has('email')"
+  												class="help is-danger">{{ errors.first('email') }}</span>
+  										</div>
+  									</div>
+  									<div class="control">
+  										<div class="field">
+  											<label class="label" for="password">Password</label>
+  											<input class="input" id="password" type="password"
+  												v-model="user.password" v-validate="'required|min:8'" ref="password" name="password"
+  												placeholder="Password" />
+  											<span v-show="errors.has('password')"
+  												class="help is-danger">{{ errors.first('password') }}</span>
+  										</div>
+  									</div>
+  									<div class="control">
+  										<div class="field">
+  											<label class="label" for="cPassword">Password</label>
+  											<input class="input" id="cPassword" type="password" v-model="cPassword"
+  												v-validate="'required|confirmed'" data-vv-as="password"
+  												name="cPassword" placeholder="Confirm Password" />
+  											<span v-show="errors.has('cPassword')"
+  												class="help is-danger">{{ errors.first('cPassword') }}</span>
+  										</div>
+  									</div>
+  									<div class="level options">
+										<div class="checkbox level-left">
+											<input type="checkbox" id="checkbox" class="regular-checkbox">
+											<label for="checkbox">Remember me</label>
 										</div>
+										<a class="btn btn-link level-right" href="/">Login?</a>
 									</div>
-									<div class="field">
-										<div class="control">
-                      <label class="label level-left" for="password">Password</label>
-												<input class="input" v-model.lazy="password" v-validate="'required|min:8'" type="password" name="password" placeholder="Password">
-												<span class="icon is-small is-left">
-													<i class="fa fa-envelope"></i>
-												</span>
-                        <span v-show="errors.has('password')" class="help is-danger">{{ errors.first('password') }}</span>
-										</div>
-									</div>
-                  <div class="field">
-										<div class="control">
-                      <label class="label level-left" for="confirmPassword">Confirm Password</label>
-												<input class="input" v-model="confirmPassword" v-validate="'required|confirmed:password'" 
-                        type="password" name="confirmPassword" placeholder="Confirm Password" data-vv-as="password">
-												<span class="icon is-small is-left">
-													<i class="fa fa-envelope"></i>
-												</span>
-                        <span v-show="errors.has('confirmPassword')" class="help is-danger">{{ errors.first('confirmPassword') }}</span>
-										</div>
-									</div>
-									<div class="level-right options">
-										<a class="btn btn-link" href="/">Login?</a>
-									</div>
-									<button type="submit" class="btn btn-primary">Register</button>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-				</div>
-			</div>
-		</div>
-	</section>
+  									<button type="submit" class="btn btn-primary">Register</button>
+  								</form>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+  </section>
 </template>
 
 <script>
   export default {
-    data(){
-      return {
-        email : "",
-        password : "",
-        confirmPassword : ""
-      }
-    },
-     methods: {
-      register(e) {
-        const email = this.email 
-        const password = this.password
-        const confirmPassword = this.confirmPassword
-                e.preventDefault();
-                let currentObj = this;
-                this.axios.post('http://localhost:3001/auth/register', {
-                    email = this.email,
-                    password = this.password,
-                    confirmPassword = this.confirmPassword
-                })
-                .then(function (response) {
-                    currentObj.output = response.data;
-                })
-                .catch(function (error) {
-                    currentObj.output = error;
-                });
+  	data() {
+  		return {
+  			user: {
+  				email: "",
+  				password: "",
 
-      }
-    }
+  			},
+  			cPassword: "",
+  			response: "",
+  			respError: "",
+  			hasError: false,
+  			closeNotification: false
+
+  		}
+  	},
+  	methods: {
+  		register() {
+  			this.closeNotification = true;
+  			let currentObject = this;
+  			this.$axios.post('http://localhost:3001/auth/register', this.user)
+  				.then(function (response) {
+  					if (!response.data.msg) {
+  						currentObject.response = '';
+  						currentObject.hasError = true;
+  						currentObject.respError = response.data.error;
+  					} else {
+  						currentObject.hasError = false;
+  						currentObject.response = response.data.msg;
+  						currentObject.respError = '';
+  						this.$router.push('/');
+  					}
+  				})
+  				.catch(function (error) {
+  					// console.log(error);
+  				});
+  		},
+  		close() {
+  			this.closeNotification = false;
+  		},
+  		validateForm() {
+  			this.$validator.validateAll();
+  		}
+  	}
   }
 </script>
 
@@ -98,6 +126,14 @@ $grey:         hsl(0, 0%, 48%);
 $grey-light:   hsl(0, 0%, 71%);
 $grey-lighter: hsl(0, 0%, 86%);
 
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.25s ease-out;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 
 #login {
 	display: flex;
@@ -160,6 +196,7 @@ $grey-lighter: hsl(0, 0%, 86%);
 		.options {
 			color: $grey-light;
 			margin-bottom: 1.5rem;
+			margin-top: 1.5rem;
 		}
 
 		button {
@@ -191,33 +228,6 @@ label {
 	cursor: pointer;
 }
 
-.regular-checkbox {
-	display: none;
-}
-
-.regular-checkbox + label {
-	background-color: #fafafa;
-	border: 1px solid $grey-lighter;
-	box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-	padding: 7px;
-	border-radius: 3px;
-	display: inline-block;
-	position: relative;
-}
-
-.regular-checkbox:checked + label {
-	background-color: #e9ecee;
-}
-
-.regular-checkbox:checked + label:after {
-	content: '\2714';
-	font-size: 11px;
-	position: absolute;
-	top: 0;
-	left: 3px;
-	color: $grey-light;
-}
-
 input:focus,
 select:focus,
 textarea:focus,
@@ -225,21 +235,3 @@ button:focus {
 	outline: none;
 }
 </style>
-
-<script>
-  export default {
-    data(){
-      return {
-        email : "",
-        password : ""
-      }
-    },
-    methods: {
-      login: function () {
-        const email = this.email 
-        const password = this.password
-        this.$store.dispatch('login', { email, password }).then(() => this.$router.push('/'))
-      }
-    }
-  }
-</script>

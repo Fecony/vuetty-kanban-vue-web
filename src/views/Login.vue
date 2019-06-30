@@ -1,71 +1,88 @@
 <template>
-  <section class="hero is-fullheight">
-		<div class="hero-body">
-			<div class="container">
-				<div class="columns is-centered">
-					<div class="column is-5-tablet is-8-desktop is-5-widescreen">
+<section class="hero is-fullheight">
+	<div class="hero-body">
+		<div class="container">
+			<div class="columns is-centered">
+				<div class="column is-5-tablet is-8-desktop is-5-widescreen">
 					<div id="login">
 						<div class="login-card">
 							<div class="card-title">
 								<h1>Please Sign In</h1>
 							</div>
 							<div class="content">
-								<form method="POST" action="">
-									<div class="field">
-										<label class="label level-left" for="email">Email</label>
-										<div class="control">
-											<input class="input" v-model.lazy="email" v-validate="'email'" type="email" name="email" placeholder="Email">
-											<span class="icon is-small is-left">
-												<i class="fa fa-envelope"></i>
-											</span>
-											<span v-show="errors.has('email')" class="help is-danger">{{ errors.first('email') }}</span>
+								<div v-if="response" class="has-text-danger">{{ response }}</div>
+								<form @submit.prevent="login()">
+									<div class="control">
+										<div class="field">
+											<label class="label" for="email">Email</label>
+											<input class="input" id="email" type="email" v-model="user.email" v-validate="'required|email'"
+												name="email" placeholder="Email" />
+											<span v-show="errors.has('email')"
+												class="help is-danger">{{ errors.first('email') }}</span>
 										</div>
 									</div>
-									<div class="field">
-										<label class="label level-left" for="password">Password</label>
-										<div class="control">
-												<input class="input" v-model.lazy="password" v-validate="'required'" type="password" name="password" placeholder="Password">
-												<span class="icon is-small is-left">
-													<i class="fa fa-envelope"></i>
-												</span>
+									<div class="control">
+										<div class="field">
+											<label class="label" for="password">Password</label>
+											<input class="input" id="password" type="password" v-model="user.password" v-validate="'required'"
+												name="password" placeholder="Password" />
+											<span v-show="errors.has('password')"
+												class="help is-danger">{{ errors.first('password') }}</span>
 										</div>
 									</div>
 									<div class="level options">
 										<div class="checkbox level-left">
 											<input type="checkbox" id="checkbox" class="regular-checkbox">
-											<label for="checkbox"></label>
-											<span>Remember me</span>
+											<label for="checkbox">Remember me</label>
 										</div>
 										<a class="btn btn-link level-right" href="/register">Register?</a>
 									</div>
 									<button type="submit" class="btn btn-primary">Login</button>
-										</form>
-									</div>
-								</div>
+								</form>
 							</div>
 						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+</section>
 </template>
 
 <script>
-  export default {
-    data(){
-      return {
-        email : "",
-        password : ""
-      }
-    },
-    methods: {
-      login: function () {
-        const email = this.email 
-        const password = this.password
-        this.$store.dispatch('login', { email, password }).then(() => this.$router.push('/'))
-      }
-    }
-  }
+export default {
+	data() {
+		return {
+			user: {
+				email: "",
+				password: ""
+			},
+			response: ''
+		}
+	},
+	methods: {
+		login() {
+		let currentObject = this;
+		currentObject.$validator.validateAll().then(isValid => {
+			if (!isValid) {
+				console.log('īnvalid')
+			} else {
+				this.$axios.post('http://localhost:3001/auth/login', this.user)
+					.then(function (response) {
+						currentObject.response = response.data;
+
+						if (response.data.token) {
+							currentObject.$router.push('/dashboard');
+						}
+					})
+					.catch(function (error) {
+						currentObject.response = 'Invalid username and/or password!';
+					});
+				}
+			})
+		}
+	}
+}
 </script>
 
 <style lang="scss" scoped>
@@ -163,37 +180,6 @@ $grey-lighter: hsl(0, 0%, 86%);
 			}
 		}
 	}
-}
-
-label {
-	cursor: pointer;
-}
-
-.regular-checkbox {
-	display: none;
-}
-
-.regular-checkbox + label {
-	background-color: #fafafa;
-	border: 1px solid $grey-lighter;
-	box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-	padding: 7px;
-	border-radius: 3px;
-	display: inline-block;
-	position: relative;
-}
-
-.regular-checkbox:checked + label {
-	background-color: #e9ecee;
-}
-
-.regular-checkbox:checked + label:after {
-	content: '\2714';
-	font-size: 11px;
-	position: absolute;
-	top: 0;
-	left: 3px;
-	color: $grey-light;
 }
 
 input:focus,

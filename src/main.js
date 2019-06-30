@@ -7,8 +7,9 @@ import axios from 'axios';
 
 Vue.use(VeeValidate);
 
-Vue.prototype.$axios = axios
+Vue.use(router);
 
+Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false
 
