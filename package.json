@@ -8,27 +8,26 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "ajv": "^6.10.0",
+    "ajv": "^6.10.1",
     "axios": "^0.18.1",
-    "bulma": "^0.7.4",
+    "bulma": "^0.7.5",
     "dotenv": "^8.0.0",
-    "vee-validate": "^2.2.9",
+    "vee-validate": "^2.2.12",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.3",
-    "vuelidate": "^0.7.4",
-    "vuex": "^3.1.0"
+    "vue-router": "^3.0.7",
+    "vuex": "^3.1.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-eslint": "^3.7.0",
-    "@vue/cli-service": "^3.7.0",
-    "babel-eslint": "^10.0.1",
+    "@vue/cli-plugin-eslint": "^3.9.2",
+    "@vue/cli-service": "^3.9.2",
+    "babel-eslint": "^10.0.2",
     "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
+    "eslint-plugin-vue": "^5.2.3",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.21",
-    "webpack": "^4.32.2"
+    "webpack": "^4.35.3"
   }
 }
