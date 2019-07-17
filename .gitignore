@@ -59,12 +59,14 @@ Temporary Items
 # Recommended template: Node.gitignore
 
 node_modules/
+dist/
 npm-debug.log
 yarn-error.log
 
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
+Thumbs.db:encryptable
 ehthumbs.db
 ehthumbs_vista.db
 
