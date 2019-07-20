@@ -4,8 +4,8 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-5-tablet is-8-desktop is-5-widescreen">
-            <p>main</p>
-            <a href="#!" @click.prevent="logout">Logout</a>
+            <p>404</p>
+            <router-link to="/">Main Page</router-link>
           </div>
         </div>
       </div>
@@ -14,19 +14,11 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-
 export default {
-  name: 'home',
-  methods: {
-    ...mapMutations('auth', { logutUser: 'logout' }),
-    logout() {
-      this.logutUser()
-      this.$router.push('/login')
-    }
-  }
+  name: 'PageNotFound'
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="sass" scoped>
+
 </style>
