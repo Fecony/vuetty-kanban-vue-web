@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/variables/colors.scss';
+@import '@/assets/variables/_colors.scss';
 
 .component-fade-enter-active,
 .component-fade-leave-active {
