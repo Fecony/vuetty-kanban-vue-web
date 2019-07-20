@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="layout-default is-fullheight">
-     <transition name="fade" mode="out-in" appear>
-        <router-view/>
-     </transition>
+    <transition name="fade" mode="out-in" appear>
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -15,11 +15,13 @@
   color: #2c3e50;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
 
-.fade-enter, .fade-leave-active {
-  opacity: 0
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
 }
 </style>

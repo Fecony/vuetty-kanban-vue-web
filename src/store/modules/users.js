@@ -1,47 +1,20 @@
-import axios from 'axios'
-import router from '../../router'
-
 const state = {
-  token: null
-};
+  isLoading: false,
+  users: []
+}
 
-const getters = {};
-
-const mutations = {
-  authUser (state, userData) {
-    state.token = userData.token
-  }
-};
-
-const actions = {
-  register ({commit}, authData) {
-    axios.post("/auth/register", {
-      email: authData.email,
-      password: authData.password,    
-    })
-    .then((response) => {
-      commit('authUser', {
-        token: response.data.token
-      })    
-    })
-    .catch((error) => console.log(error))
+const getters = {
+  isLoading(state) {
+    return state.isLoading
   },
-  login ({commit}, authData) {
-    axios.post("/auth/login", {
-      email: authData.email,
-      password: authData.password
-    })
-    .then((response) => {
-      commit('authUser', {
-        token: response.data.token
-      })
-      if (state.token) {
-        router.push('/dashboard')
-      }   
-    })    
-    .catch((error) => console.log(error))
+  users(state) {
+    return state.users
   }
-};
+}
+
+const mutations = {}
+
+const actions = {}
 
 export default {
   namespaced: true,
@@ -49,4 +22,4 @@ export default {
   getters,
   actions,
   mutations
-};
+}

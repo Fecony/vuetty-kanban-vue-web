@@ -1,23 +1,24 @@
-import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
-import store from './store/index.js';
-import axios from 'axios';
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
+import store from './store/index.js'
+import axios from 'axios'
 import VeeValidate from 'vee-validate'
+import { initialize } from './helpers/general'
 
-axios.defaults.baseURL = "http://localhost:3001"
+axios.defaults.baseURL = process.env.SERVER_URL || 'http://localhost:3000'
+
+require('./assets/main.scss')
 
 Vue.use(router)
 Vue.use(VeeValidate)
 
-Vue.config.productionTip = false;
+initialize(store, router)
+
+Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
-  render: function(h) {
-    return h(App);
-  }
-}).$mount('#app');
-
-import './../node_modules/bulma/css/bulma.css';
+  render: h => h(App)
+}).$mount('#app')

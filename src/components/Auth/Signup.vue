@@ -4,8 +4,10 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-5-tablet is-8-desktop is-5-widescreen">
-            <login v-if="authElem === 'login'"></login>
-            <register v-if="authElem === 'register'"></register>
+            <transition name="component-fade" mode="out-in">
+              <login v-if="authElem === 'login'" />
+              <register v-if="authElem === 'register'" />
+            </transition>
           </div>
         </div>
       </div>
@@ -14,9 +16,9 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import login from "./Login";
-import register from "./Register";
+import { mapState, mapMutations } from 'vuex'
+import login from './Login'
+import register from './Register'
 
 export default {
   components: {
@@ -24,121 +26,28 @@ export default {
     register
   },
   computed: {
-    ...mapState("ui", {
+    ...mapState('ui', {
       authElem: state => state.authElem
     })
   },
   methods: {
+    ...mapMutations('ui', ['setAuthElem']),
     switchElem() {
-      this.$store.commit("ui/setAuthElem", "register");
-    }
-  }
-};
-</script>
-
-<style lang="scss" scoped>
-$primary: hsl(171, 100%, 41%);
-$grey-darker: hsl(0, 0%, 21%);
-$grey-dark: hsl(0, 0%, 29%);
-$grey: hsl(0, 0%, 48%);
-$grey-light: hsl(0, 0%, 71%);
-$grey-lighter: hsl(0, 0%, 86%);
-
-#login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  .login-card {
-    background: #fff;
-    width: 24rem;
-    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.11);
-    width: 100%;
-
-    .card-title {
-      background-color: darken($primary, 5%);
-      padding: 2rem;
-
-      h1 {
-        color: #fff;
-        text-align: center;
-        font-size: 1.2rem;
-      }
-    }
-
-    .content {
-      padding: 6rem 5rem;
-    }
-
-    #email,
-    #password {
-      display: block;
-      width: 100%;
-      font-size: 1rem;
-      margin-bottom: 1.75rem;
-      padding: 0.25rem 0;
-      border: none;
-      border-bottom: 1px solid $grey-lighter;
-      transition: all 0.5s;
-
-      &:hover {
-        border-color: $grey;
-      }
-
-      &:active,
-      &:focus {
-        border-color: $primary;
-      }
-    }
-
-    .checkbox {
-      color: $grey-light;
-      font-size: 0.8rem;
-
-      span {
-        margin-left: 0.5rem;
-      }
-    }
-
-    a {
-      font-size: 0.8rem;
-    }
-
-    .options {
-      color: $grey-light;
-      margin-bottom: 1.5rem;
-    }
-
-    button {
-      margin: auto;
-      cursor: pointer;
-      font-size: 1.2rem;
-      color: $primary;
-      border-radius: 4rem;
-      display: block;
-      width: 12rem;
-      background: transparent;
-      border: 2px solid $primary;
-      padding: 0.9rem 0 1.1rem;
-      transition: color 0.5s, border-color 0.5s;
-
-      &:hover,
-      &:focus {
-        color: darken($primary, 10%);
-        border-color: darken($primary, 10%);
-      }
-
-      &:active {
-        transform: translateY(1px);
-      }
+      this.setAuthElem('register')
     }
   }
 }
+</script>
 
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
+<style lang="scss" scoped>
+@import '@/assets/variables/colors.scss';
+
+.component-fade-enter-active,
+.component-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.component-fade-enter,
+.component-fade-leave-to {
+  opacity: 0;
 }
 </style>

@@ -1,16 +1,16 @@
 const state = {
   authElem: 'login'
-};
+}
 
-const getters = {};
+const getters = {}
 
 const mutations = {
-  setAuthElem(state, action) {
-    state.authElem = action;
+  setAuthElem(state, payload) {
+    state.authElem = payload
   }
-};
+}
 
-const actions = {};
+const actions = {}
 
 export default {
   namespaced: true,
@@ -18,4 +18,4 @@ export default {
   getters,
   actions,
   mutations
-};
+}
