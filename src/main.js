@@ -7,8 +7,9 @@ import VeeValidate from 'vee-validate'
 import { initialize } from './helpers/general'
 
 axios.defaults.baseURL = process.env.VUE_APP_SERVER || 'http://localhost:3000'
+
 require('./assets/main.scss')
-console.log(process.env)
+
 Vue.use(router)
 Vue.use(VeeValidate)
 
