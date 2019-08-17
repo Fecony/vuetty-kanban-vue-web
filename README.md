@@ -14,33 +14,33 @@ These instructions will get you a copy of the project up and running on your loc
 
 A step by step series of examples that tell you how to get a development env running
 
-Copy project to local machine
+> Copy project to local machine
 
 ```
 git clone git@github.com:Fecony/vuetty-kanban-vue-web.git
 ```
 
-Move to project directory and Install dependencies
+> Move to project directory and Install dependencies
 
 ```
 cd vuetty-kanban-vue-web
 npm install
 ```
 
-Compile and hot-reload for development
+> Compile and hot-reload for development
 
 ```
 npm run serve
 ```
 
-Create .env file and add all variables needed
+> Create .env file and add all variables needed
 
 ```
 PORT = [PORT]
 SERVER_URL = [SERVER_URL]
 ```
 
-Start Application
+> Start Application
 
 ```
 npm run serve
@@ -57,11 +57,18 @@ Deploys from `master` are published automatically.
 
 ## Built With
 
-- [Vue](https://vuejs.org/) - The web framework used
+- [Vue](https://vuejs.org/) - The web framework
+- [Vue Router](https://router.vuejs.org/) - Official router for Vue.js
+- [Vuex](https://vuex.vuejs.org/) - State management library for Vue.js
+- [Bulma](https://bulma.io/) - CSS Framework
+- [npm](https://www.npmjs.com/) - Dependency Management
 
 ## Authors
 
-> TODO
+- **Ricards Tagils** - _Development_ - [Fecony](https://github.com/Fecony)
+- **Diana Pukaine** - _Development_ - [dianapukaine](https://github.com/dianapukaine)
+
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
