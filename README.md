@@ -68,8 +68,6 @@ Deploys from `master` are published automatically.
 - **Ricards Tagils** - _Development_ - [Fecony](https://github.com/Fecony)
 - **Diana Pukaine** - _Development_ - [dianapukaine](https://github.com/dianapukaine)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
 ## License
 
 > TODO
