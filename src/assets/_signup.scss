@@ -52,11 +52,9 @@
 
       button {
         width: 12rem;
-        background: transparent;
 
         &:hover,
         &:focus {
-          color: darken($primary, 10%);
           border-color: darken($primary, 10%);
         }
 
