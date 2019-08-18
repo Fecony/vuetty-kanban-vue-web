@@ -8,8 +8,6 @@ import { initialize } from './helpers/general'
 
 axios.defaults.baseURL = process.env.VUE_APP_SERVER || 'http://localhost:3000'
 
-require('./assets/main.scss')
-
 Vue.use(router)
 Vue.use(VeeValidate)
 

@@ -33,11 +33,10 @@ npm install
 npm run serve
 ```
 
-> Create .env file and add all variables needed
+> Create .env file and add all variables needed,. Or take a look to .env.example file
 
 ```
-PORT = [PORT]
-SERVER_URL = [SERVER_URL]
+VUE_APP_SERVER = [SERVER_URL]
 ```
 
 > Start Application

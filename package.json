@@ -11,6 +11,7 @@
     "ajv": "^6.10.2",
     "axios": "^0.18.1",
     "dotenv": "^8.0.0",
+    "normalize-scss": "^7.0.1",
     "vee-validate": "^2.2.13",
     "vue": "^2.6.10",
     "vue-router": "^3.0.7",

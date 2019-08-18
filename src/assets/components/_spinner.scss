@@ -1,0 +1,17 @@
+@import '../main.scss';
+
+.spinner {
+  z-index: 200;
+  @include m('global') {
+    background: $spinner-global-bg;
+    position: fixed;
+    z-index: 200;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

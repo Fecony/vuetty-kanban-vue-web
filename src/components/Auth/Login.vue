@@ -9,8 +9,8 @@
       <header class="card-header">
         <p class="card-header-title">Please Sign In</p>
       </header>
-      <div class="content">
-        <form @submit.prevent="authenticate()">
+      <div class="is-relative content">
+        <form v-if="!isLoading" @submit.prevent="authenticate()">
           <text-input
             id="email"
             type="email"
@@ -44,6 +44,7 @@
             :class="{'is-loading': loading}"
           >Login</button>
         </form>
+        <spinner :loading="isLoading" size="s" color="danger" global />
       </div>
     </div>
   </div>
@@ -53,11 +54,13 @@
 import TextInput from '../Form/TextInput'
 import { mapActions, mapMutations, mapGetters, mapState } from 'vuex'
 import { login } from '../../helpers/auth'
+import SpinnerComponent from '../SpinnerComponent'
 
 export default {
   name: 'login',
   components: {
-    TextInput
+    TextInput,
+    spinner: SpinnerComponent
   },
   data() {
     return {
@@ -110,6 +113,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/variables/_colors.scss';
-@import '@/assets/_signup.scss';
+@import '@/assets/main.scss';
+@import '@/assets/views/_signup.scss';
 </style>

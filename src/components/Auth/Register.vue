@@ -114,6 +114,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/variables/_colors.scss';
-@import '@/assets/_signup.scss';
+@import '@/assets/main.scss';
+@import '@/assets/views/_signup.scss';
 </style>
