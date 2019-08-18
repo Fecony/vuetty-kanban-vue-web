@@ -58,11 +58,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/main.scss';
+
 .label {
   cursor: pointer;
   text-transform: capitalize;
 }
 .error {
-  color: red;
+  color: $red;
 }
 </style>
