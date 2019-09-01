@@ -1,5 +1,6 @@
 <template>
   <section class="hero is-fullheight">
+    <Navbar />
     <div class="hero-body">
       <div class="container">
         <div class="columns is-centered">
@@ -15,9 +16,11 @@
 
 <script>
 import { mapMutations } from 'vuex'
+import Navbar from '../components/Main/NavBarComponent'
 
 export default {
   name: 'home',
+  components: { Navbar },
   methods: {
     ...mapMutations('auth', { logutUser: 'logout' }),
     logout() {
