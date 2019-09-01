@@ -85,12 +85,7 @@ export default {
   methods: {
     ...mapMutations('ui', ['setAuthElem']),
     ...mapActions('auth', ['on_success']),
-    ...mapMutations('auth', [
-      'on_sign',
-      'on_success',
-      'on_failed',
-      'setAuthError'
-    ]),
+    ...mapMutations('auth', ['on_sign', 'on_failed', 'setAuthError']),
     authenticate() {
       this.$validator.validateAll().then(() => {
         if (!this.errors.any()) {
